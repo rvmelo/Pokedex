@@ -9,5 +9,18 @@ declare module 'styled-components' {
       background: string;
       text: string;
     };
+    fonts: {
+      sizes: {
+        xs: number;
+        sm: number;
+        m: number;
+        lg: number;
+        xl: number;
+      };
+      family: {
+        regular: string;
+        bold: string;
+      };
+    };
   }
 }
