@@ -7,6 +7,7 @@ export default {
 
     background: '#212121',
     text: '#fff',
+    mediumGray: '#666666',
   },
   fonts: {
     sizes: {

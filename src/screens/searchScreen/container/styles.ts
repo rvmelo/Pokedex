@@ -4,3 +4,43 @@ export const Container = styled.View`
   flex: 1;
   background: ${props => props.theme.colors.background};
 `;
+
+export const SearchContainer = styled.View`
+  flex-direction: row;
+  margin-top: 50px;
+  padding: 0 40px;
+  align-items: center;
+`;
+
+export const InputWrapper = styled.View`
+  flex-direction: row;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: ${({theme}) => theme.colors.secondary};
+  height: 54px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 19px 0 46px;
+  max-width: 303px;
+  width: 100%;
+  margin-right: 5.4%;
+`;
+
+export const StyledInput = styled.TextInput.attrs(({theme}) => ({
+  placeholder: 'Buscar Pokemon',
+  placeholderTextColor: theme.colors.mediumGray,
+}))`
+  /* background: purple; */
+  padding: 0;
+`;
+
+export const InputLabel = styled.Text`
+  background: ${({theme}) => theme.colors.background};
+  color: ${({theme}) => theme.colors.secondary};
+  font-size: 16px;
+  font-family: ${({theme}) => theme.fonts.family.bold};
+  position: absolute;
+  left: 41px;
+  bottom: 38px;
+  padding: 0 10px 0 5px;
+`;
