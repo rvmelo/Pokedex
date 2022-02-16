@@ -2,7 +2,7 @@ import React from 'react';
 import {Switch} from 'react-native';
 import {useTheme} from 'styled-components';
 
-import {useAppTheme} from '../hooks/useAppTheme';
+import {useAppTheme} from '../../hooks/useAppTheme';
 
 //  styles
 import {SwitchWrapper} from './styles';

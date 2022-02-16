@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {ThemeSwitch} from '../components/themeSwitch';
+import {ThemeSwitch} from './themeSwitch';
 
-import {Logo} from '../assets/svg/logo';
+import {Logo} from '../../assets/svg/logo';
 
 import {HeaderContainer, HeaderText} from './styles';
 
