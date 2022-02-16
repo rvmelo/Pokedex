@@ -1,9 +1,8 @@
 import React from 'react';
-import {TouchableWithoutFeedback} from 'react-native';
-import {Heart} from '../../../assets/svg/heart';
 
 //  components
 import {Header} from '../../../components/header';
+import {IconButton} from './iconButton';
 import {SearchInput} from './searchInput';
 
 //  styles
@@ -15,9 +14,7 @@ const SearchScreen: React.FC = () => {
       <Header />
       <SearchContainer>
         <SearchInput />
-        <TouchableWithoutFeedback onPress={() => console.log('pressed')}>
-          <Heart width={30} height={18} />
-        </TouchableWithoutFeedback>
+        <IconButton />
       </SearchContainer>
     </Container>
   );

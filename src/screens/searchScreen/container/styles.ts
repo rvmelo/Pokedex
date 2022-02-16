@@ -23,15 +23,15 @@ export const InputWrapper = styled.View`
   padding: 0 19px 0 46px;
   max-width: 303px;
   width: 100%;
-  margin-right: 5.4%;
 `;
 
 export const StyledInput = styled.TextInput.attrs(({theme}) => ({
   placeholder: 'Buscar Pokemon',
   placeholderTextColor: theme.colors.mediumGray,
+  selectionColor: theme.colors.mediumGray,
 }))`
-  /* background: purple; */
   padding: 0;
+  color: ${({theme}) => theme.colors.mediumGray};
 `;
 
 export const InputLabel = styled.Text`
@@ -44,3 +44,12 @@ export const InputLabel = styled.Text`
   bottom: 38px;
   padding: 0 10px 0 5px;
 `;
+
+export const IconButtonContainer = styled.View`
+  height: 54px;
+  width: 100%;
+  justify-content: center;
+  padding-left: 5.4%;
+`;
+
+export const SVGContainer = styled.View``;
