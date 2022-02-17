@@ -1,31 +1,29 @@
 import styled from 'styled-components/native';
 import {SCREEN_WIDTH} from '../../constants/dimensions';
+import {PokemonTypes} from './useItem';
 
-export const ItemContainer = styled.View`
+interface TypeProps {
+  type: PokemonTypes['types'];
+}
+
+export const ItemContainer = styled.View<TypeProps>`
   width: ${0.24 * SCREEN_WIDTH}px;
   height: ${1.08 * (0.24 * SCREEN_WIDTH)}px;
   border-radius: 8px;
   border-width: 1px;
-  border-color: ${({theme}) => theme.colors.secondary};
+  border-color: ${({theme, type}) => theme.colors[type]};
   overflow: hidden;
   margin: 0 9px;
   margin-bottom: 22px;
   justify-content: flex-end;
 `;
 
-export const ItemPhoto = styled.Image.attrs(({source}) => {
-  source;
-})`
-  width: 100%;
-  height: 100%;
-`;
-
-export const ItemLabel = styled.View`
+export const ItemLabel = styled.View<TypeProps>`
   height: ${0.21 * 1.08 * (0.24 * SCREEN_WIDTH)}px;
   width: 100%;
   justify-content: center;
   align-items: center;
-  background: ${({theme}) => theme.colors.secondary};
+  background-color: ${({theme, type}) => theme.colors[type]};
 `;
 
 export const ItemText = styled.Text`

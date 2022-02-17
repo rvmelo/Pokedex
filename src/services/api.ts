@@ -1,7 +1,10 @@
 import axios from 'axios';
 
+//  constants
+import {base_url} from '../constants/api';
+
 const api = axios.create({
-  baseURL: 'https://pokeapi.co/api/v2/',
+  baseURL: base_url,
 });
 
 export default api;

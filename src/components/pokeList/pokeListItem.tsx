@@ -1,19 +1,33 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
+import {SvgUri} from 'react-native-svg';
+
+//  constants
+import {sprite_url} from '../../constants/api';
 
 //  types
 import {Pokemon} from '../../types/types';
-import {ItemContainer, ItemLabel, ItemPhoto, ItemText} from './styles';
+
+//  styles
+import {ItemContainer, ItemLabel, ItemText} from './styles';
+
+//  hooks
+import {useItem} from './useItem';
 
 export const PokeListItem: React.FC<Pokemon> = ({name, url}) => {
-  console.log(url);
+  const {itemData} = useItem({url});
+
+  const {id, type} = itemData || {};
+
   return (
-    <ItemContainer>
-      <ItemPhoto
-        source={{
-          uri: 'https://assets.pokemon.com/static2/_ui/img/og-default-image.jpeg',
-        }}
+    <ItemContainer type={type}>
+      <SvgUri
+        width="100%"
+        height="70%"
+        uri={id ? `${sprite_url}/${id}.svg` : ''}
+        style={{marginBottom: '3%'}}
       />
-      <ItemLabel>
+      <ItemLabel type={type}>
         <ItemText>{name}</ItemText>
       </ItemLabel>
     </ItemContainer>
