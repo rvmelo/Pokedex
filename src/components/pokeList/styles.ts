@@ -15,7 +15,8 @@ export const ItemContainer = styled.View<TypeProps>`
   overflow: hidden;
   margin: 0 9px;
   margin-bottom: 22px;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: flex-end;
 `;
 
 export const ItemLabel = styled.View<TypeProps>`
@@ -30,4 +31,12 @@ export const ItemText = styled.Text`
   font-family: ${({theme}) => theme.fonts.family.regular};
   font-size: ${({theme}) => theme.fonts.sizes.sm}px;
   color: ${({theme}) => theme.colors.primary};
+`;
+
+export const IdText = styled.Text<TypeProps>`
+  font-size: ${({theme}) => theme.fonts.sizes.xs}px;
+  font-family: ${({theme}) => theme.fonts.family.regular};
+  color: ${({theme, type}) => (type ? theme.colors[type] : '#000')};
+  margin-top: 3.6%;
+  margin-right: 7.7%;
 `;

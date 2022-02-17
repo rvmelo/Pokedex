@@ -1,4 +1,4 @@
-import {useCallback, useEffect, useState} from 'react';
+import {useCallback, useEffect, useRef, useState} from 'react';
 import {AxiosResponse} from 'axios';
 
 // services
@@ -16,23 +16,38 @@ export function useSearchScreen(): ReturnType {
   const [pokeList, setPokeList] = useState<Pokemon[]>([]);
   const [offset, setOffset] = useState(20);
 
+  const isMounted = useRef<boolean | null>(null);
+
+  useEffect(() => {
+    isMounted.current = true;
+
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
+
   const onPokeListRequest = useCallback(async () => {
     const pokemons: AxiosResponse<{results: Pokemon[]}> = await api.get(
       `pokemon?offset=${offset}`,
     );
 
-    setPokeList(prev => [...prev, ...pokemons?.data?.results]);
+    isMounted.current &&
+      setPokeList(prev => [...prev, ...pokemons?.data?.results]);
   }, [offset]);
 
-  const onListEnd = useCallback(() => setOffset(prev => prev + 20), []);
+  const onListEnd = useCallback(
+    () => isMounted.current && setOffset(prev => prev + 20),
+    [],
+  );
 
   useEffect(() => {
     (async () => {
       const pokemons: AxiosResponse<{results: Pokemon[]}> = await api.get(
-        'pokemon?offset=20',
+        'pokemon?offset=0',
       );
 
-      setPokeList(prev => [...prev, ...pokemons?.data?.results]);
+      isMounted.current &&
+        setPokeList(prev => [...prev, ...pokemons?.data?.results]);
     })();
   }, []);
 
