@@ -4,10 +4,8 @@ import {AxiosResponse} from 'axios';
 // services
 import api from '../../services/api';
 
-interface Pokemon {
-  name: string;
-  url: string;
-}
+//  types
+import {Pokemon} from '../../types/types';
 
 interface ReturnType {
   pokeList: Pokemon[];
