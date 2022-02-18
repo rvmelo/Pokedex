@@ -45,7 +45,7 @@ export const InputLabel = styled.Text`
   padding: 0 10px 0 5px;
 `;
 
-export const IconButtonContainer = styled.View`
+export const HeartIconContainer = styled.View`
   height: 54px;
   width: 100%;
   justify-content: center;
