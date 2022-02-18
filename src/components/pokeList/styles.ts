@@ -40,3 +40,21 @@ export const IdText = styled.Text<TypeProps>`
   margin-top: 3.6%;
   margin-right: 7.7%;
 `;
+
+// empty component
+
+export const EmptyContainer = styled.View`
+  align-items: center;
+`;
+
+export const EmptyTitleText = styled.Text`
+  font-size: 148px;
+  color: #bdbdbd;
+  font-family: ${({theme}) => theme.fonts.family.regular};
+`;
+
+export const EmptyText = styled.Text`
+  font-size: 22px;
+  color: #bdbdbd;
+  font-family: ${({theme}) => theme.fonts.family.regular};
+`;
