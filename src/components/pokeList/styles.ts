@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import {SCREEN_WIDTH} from '../../constants/dimensions';
-import {PokemonTypes} from './useItem';
+import {PokemonTypes} from '../../types/types';
 
 interface TypeProps {
   type: PokemonTypes['types'];
@@ -58,3 +58,5 @@ export const EmptyText = styled.Text`
   color: #bdbdbd;
   font-family: ${({theme}) => theme.fonts.family.regular};
 `;
+
+export const TouchableItem = styled.TouchableWithoutFeedback``;

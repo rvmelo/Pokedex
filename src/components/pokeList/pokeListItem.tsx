@@ -9,15 +9,23 @@ import {sprite_url} from '../../constants/api';
 import {Pokemon} from '../../types/types';
 
 //  styles
-import {IdText, ItemContainer, ItemLabel, ItemText} from './styles';
+import {
+  IdText,
+  ItemContainer,
+  ItemLabel,
+  ItemText,
+  TouchableItem,
+} from './styles';
 
 //  hooks
 import {useItem} from './useItem';
 
 export const PokeListItem: React.FC<Pokemon> = ({name, url}) => {
-  const {itemData} = useItem({url});
+  const {item, onNavigation} = useItem({url});
 
-  const {id, type} = itemData || {};
+  const {id, types} = item || {};
+
+  const typeName = types ? types[0]?.type?.name : 'normal';
 
   const formattedId = useMemo(() => {
     if (id < 10) {
@@ -28,19 +36,21 @@ export const PokeListItem: React.FC<Pokemon> = ({name, url}) => {
   }, [id]);
 
   return (
-    <ItemContainer type={type}>
-      <IdText type={type}>{formattedId}</IdText>
-      {id && (
-        <SvgUri
-          width="60%"
-          height="60%"
-          uri={id ? `${sprite_url}/${id}.svg` : ''}
-          style={{position: 'absolute', bottom: '25%', alignSelf: 'center'}}
-        />
-      )}
-      <ItemLabel type={type}>
-        <ItemText>{name}</ItemText>
-      </ItemLabel>
-    </ItemContainer>
+    <TouchableItem onPress={onNavigation}>
+      <ItemContainer type={typeName}>
+        <IdText type={typeName}>{formattedId}</IdText>
+        {id && (
+          <SvgUri
+            width="60%"
+            height="60%"
+            uri={id ? `${sprite_url}/${id}.svg` : `${sprite_url}/1.svg`}
+            style={{position: 'absolute', bottom: '25%', alignSelf: 'center'}}
+          />
+        )}
+        <ItemLabel type={typeName}>
+          <ItemText>{name}</ItemText>
+        </ItemLabel>
+      </ItemContainer>
+    </TouchableItem>
   );
 };

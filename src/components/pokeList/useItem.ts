@@ -2,60 +2,43 @@ import {useCallback, useEffect, useRef, useState} from 'react';
 
 import {AxiosResponse} from 'axios';
 
+//  navigation
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {AppStackParamList} from '../../routes/types';
+
+//  redux
+import {useDispatch} from 'react-redux';
+import {addSelectedPokemon} from '../../redux/slices/pokemon';
+
 //  services
 import api from '../../services/api';
+import {PokemonState} from '../../types/types';
 
-export interface PokemonTypes {
-  types:
-    | 'rock'
-    | 'ghost'
-    | 'steel'
-    | 'water'
-    | 'grass'
-    | 'psychic'
-    | 'ice'
-    | 'dark'
-    | 'fairy'
-    | 'normal'
-    | 'fighting'
-    | 'flying'
-    | 'poison'
-    | 'ground'
-    | 'bug'
-    | 'fire'
-    | 'electric'
-    | 'dragon';
-}
+type NavigationProps = NativeStackNavigationProp<
+  AppStackParamList,
+  'PokemonScreen'
+>;
 
 interface HookProps {
   url: string;
 }
 
-interface ItemData {
-  id: number;
-  type: PokemonTypes['types'];
-}
-
-interface PokemonType {
-  name: PokemonTypes['types'];
-  url: string;
-}
-
-interface ResponseData {
-  id: number;
-  types: {
-    type: PokemonType;
-  }[];
-}
-
 interface ReturnType {
-  itemData: ItemData;
+  item: PokemonState['selectedPokemon'];
+  onNavigation: () => void;
 }
 
 export function useItem({url}: HookProps): ReturnType {
-  const [itemData, setItemData] = useState<ItemData>({} as ItemData);
+  const [item, setItem] = useState<PokemonState['selectedPokemon']>(
+    {} as PokemonState['selectedPokemon'],
+  );
 
   const isMounted = useRef<boolean | null>(null);
+
+  const dispatch = useDispatch();
+
+  const navigation = useNavigation<NavigationProps>();
 
   useEffect(() => {
     isMounted.current = true;
@@ -65,13 +48,22 @@ export function useItem({url}: HookProps): ReturnType {
     };
   }, []);
 
+  const onNavigation = useCallback(() => {
+    try {
+      dispatch(addSelectedPokemon({selectedPokemon: {...item}}));
+
+      navigation.navigate('PokemonScreen');
+    } catch {
+      // failed to retrieve pokemon data
+    }
+  }, [dispatch, navigation, item]);
+
   const onPokemonDataRequest = useCallback(async () => {
     try {
-      const response: AxiosResponse<ResponseData> = await api.get(url);
+      const response: AxiosResponse<PokemonState['selectedPokemon']> =
+        await api.get(url);
 
-      const {id, types} = response.data || {};
-
-      isMounted.current && setItemData({id, type: types[0]?.type?.name});
+      isMounted.current && setItem({...response.data});
     } catch {
       // request failed
     }
@@ -82,6 +74,7 @@ export function useItem({url}: HookProps): ReturnType {
   }, [onPokemonDataRequest]);
 
   return {
-    itemData,
+    item,
+    onNavigation,
   };
 }
