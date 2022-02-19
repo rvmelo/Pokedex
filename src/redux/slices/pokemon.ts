@@ -1,6 +1,10 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {PokemonState} from '../../types/types';
 
+//  redux
+import {useSelector, TypedUseSelectorHook} from 'react-redux';
+import {RootState} from '../store';
+
 const initialState = {} as PokemonState;
 
 const pokemonSlice = createSlice({
@@ -12,6 +16,8 @@ const pokemonSlice = createSlice({
     },
   },
 });
+
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 export const {addSelectedPokemon} = pokemonSlice.actions;
 export default pokemonSlice.reducer;

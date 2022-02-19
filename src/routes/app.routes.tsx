@@ -17,7 +17,13 @@ const AppRoutes: React.FC = () => (
         headerShown: false,
       }}
     />
-    <App.Screen name="PokemonScreen" component={PokemonScreen} />
+    <App.Screen
+      name="PokemonScreen"
+      component={PokemonScreen}
+      options={{
+        headerShown: false,
+      }}
+    />
   </App.Navigator>
 );
 
