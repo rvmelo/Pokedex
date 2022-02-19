@@ -2,6 +2,7 @@ import React, {useMemo} from 'react';
 
 //  redux
 import {useAppSelector} from '../../../redux/slices/pokemon';
+import Board from './board';
 import {Header} from './header';
 
 //  styles
@@ -27,6 +28,7 @@ const PokemonScreen: React.FC = () => {
   return (
     <Container type={typeName}>
       <Header name={formattedName} id={formattedId} />
+      <Board pokemon={selectedPokemon} />
     </Container>
   );
 };

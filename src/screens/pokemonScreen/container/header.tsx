@@ -23,15 +23,16 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({id, name}) => {
   const navigation = useNavigation<NavigationProps>();
 
+  // TouchableWithoutFeedback should wrap HeaderLeftContent
   return (
-    <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
-      <HeaderContainer>
+    <HeaderContainer>
+      <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
         <HeaderLeftContent>
           <ArrowLeft width={24} height={32} />
           <HeaderText>{name}</HeaderText>
         </HeaderLeftContent>
-        <IdText>{id}</IdText>
-      </HeaderContainer>
-    </TouchableWithoutFeedback>
+      </TouchableWithoutFeedback>
+      <IdText>{id}</IdText>
+    </HeaderContainer>
   );
 };

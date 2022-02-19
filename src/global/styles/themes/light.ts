@@ -6,7 +6,7 @@ export default {
     secondary: '#EC0344',
 
     background: '#F7F7F7',
-    text: '#333',
+    text: '#212121',
     mediumGray: '#666666',
 
     // pokemon types
