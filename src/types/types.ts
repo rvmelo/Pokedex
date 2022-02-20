@@ -3,6 +3,16 @@ export interface Pokemon {
   url: string;
 }
 
+export interface StatsTypes {
+  types:
+    | 'hp'
+    | 'attack'
+    | 'defense'
+    | 'special-attack'
+    | 'special-defense'
+    | 'speed';
+}
+
 export interface PokemonTypes {
   types:
     | 'rock'
@@ -44,8 +54,8 @@ export interface PokemonState {
     stats: {
       base_stat: number;
       stat: {
-        name: string;
+        name: StatsTypes['types'];
       };
-    };
+    }[];
   };
 }

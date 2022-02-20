@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import {SCREEN_WIDTH} from '../../../constants/dimensions';
 import {PokemonTypes} from '../../../types/types';
 
 interface TypeProps {
@@ -119,4 +120,64 @@ export const StyledPhrase = styled.Text`
   font-family: ${({theme}) => theme.fonts.family.regular};
   color: ${({theme}) => theme.colors.text};
   text-align: justify;
+`;
+
+//  stats
+
+export const StatsContainer = styled.View`
+  margin: 0 8%;
+`;
+
+export const StatsTitle = styled.Text<TypeProps>`
+  font-size: 18px;
+  font-family: ${({theme}) => theme.fonts.family.bold};
+  color: ${({theme, type}) => theme.colors[type]};
+`;
+
+export const StatsText = styled.Text<TypeProps>`
+  font-size: ${({theme}) => theme.fonts.sizes.lg}px;
+  font-family: ${({theme}) => theme.fonts.family.regular};
+  color: ${({theme, type}) => theme.colors[type]};
+`;
+
+export const StatsWrapper = styled.View`
+  margin-top: 4.8%;
+  margin-bottom: 17%;
+`;
+
+export const StatItemContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const StatsLabelWrapper = styled.View`
+  /* padding-right: 4.8%; */
+  width: 15%;
+  border-right-width: 1px;
+  border-color: ${({theme}) => theme.colors.lightGray};
+`;
+
+export const StatsValueText = styled.Text`
+  font-size: ${({theme}) => theme.fonts.sizes.m}px;
+  font-family: ${({theme}) => theme.fonts.family.regular};
+  color: ${({theme}) => theme.colors.text};
+  padding: 0 3.4%;
+`;
+
+export const StatsBar = styled.View<TypeProps>`
+  height: 6px;
+  width: ${SCREEN_WIDTH * 0.6}px;
+  background: ${({theme, type}) => theme.colors[type]};
+  opacity: 0.2;
+`;
+
+interface BarIndicatorProps extends TypeProps {
+  multiplyFactor: number;
+}
+
+export const StatsBarIndicator = styled.View<BarIndicatorProps>`
+  height: 6px;
+  width: ${SCREEN_WIDTH * 0.6}px;
+  background: ${({theme, type}) => theme.colors[type]};
+  width: ${({multiplyFactor}) => multiplyFactor * (SCREEN_WIDTH * 0.6)}px;
 `;

@@ -8,6 +8,7 @@ export default {
     background: '#F7F7F7',
     text: '#212121',
     mediumGray: '#666666',
+    lightGray: '#e0e0e0',
 
     // pokemon types
     rock: '#B69E31',

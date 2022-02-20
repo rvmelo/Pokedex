@@ -21,13 +21,14 @@ import {
   StyledPhrase,
   AttributesWrapper,
 } from './styles';
+import {PokemonStats} from './pokemonStats';
 
 interface BoardProps {
   pokemon: PokemonState['selectedPokemon'];
 }
 
 const Board: React.FC<BoardProps> = ({pokemon}) => {
-  const {types, weight, height, moves, id} = pokemon;
+  const {types, weight, height, moves, stats, id} = pokemon;
 
   const {phrase} = useBoard({id});
 
@@ -69,6 +70,7 @@ const Board: React.FC<BoardProps> = ({pokemon}) => {
       <PhraseContainer>
         <StyledPhrase>{phrase}</StyledPhrase>
       </PhraseContainer>
+      <PokemonStats type={types[0]?.type?.name} stats={stats} />
     </BoardContainer>
   );
 };

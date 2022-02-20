@@ -9,6 +9,7 @@ declare module 'styled-components' {
       background: string;
       text: string;
       mediumGray: string;
+      lightGray: string;
 
       // pokemon types
       rock: string;

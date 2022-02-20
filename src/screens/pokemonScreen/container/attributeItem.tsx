@@ -29,7 +29,7 @@ export const AttributeItem: React.FC<AttributeProps> = ({weight, height}) => {
         {weight ? (
           <ItemText>{weight / 10} kg</ItemText>
         ) : (
-          <ItemText>{height} m</ItemText>
+          <ItemText>{height ? height / 10 : 0} m</ItemText>
         )}
       </ItemValueContainer>
       <ItemLabelText>{weight ? 'Weight' : 'Height'}</ItemLabelText>
