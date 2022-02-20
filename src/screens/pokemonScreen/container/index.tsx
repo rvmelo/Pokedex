@@ -1,4 +1,9 @@
 import React, {useMemo} from 'react';
+import {SvgUri} from 'react-native-svg';
+
+//  constants
+import {SCREEN_WIDTH} from '../../../constants/dimensions';
+import {sprite_url} from '../../../constants/api';
 
 //  redux
 import {useAppSelector} from '../../../redux/slices/pokemon';
@@ -6,7 +11,8 @@ import Board from './board';
 import {Header} from './header';
 
 //  styles
-import {Container} from './styles';
+import {Container, PokeballWrapper, PokemonImageWrapper} from './styles';
+import {Pokeball} from '../../../assets/svg/pokeball';
 
 const PokemonScreen: React.FC = () => {
   const {selectedPokemon} = useAppSelector(state => state.pokemonReducer) || {};
@@ -29,6 +35,16 @@ const PokemonScreen: React.FC = () => {
     <Container type={typeName}>
       <Header name={formattedName} id={formattedId} />
       <Board pokemon={selectedPokemon} />
+      <PokeballWrapper>
+        <Pokeball width={0.35 * SCREEN_WIDTH} height={0.35 * SCREEN_WIDTH} />
+      </PokeballWrapper>
+      <PokemonImageWrapper>
+        <SvgUri
+          width={SCREEN_WIDTH * 0.27}
+          height={SCREEN_WIDTH * 0.27}
+          uri={id ? `${sprite_url}/${id}.svg` : `${sprite_url}/1.svg`}
+        />
+      </PokemonImageWrapper>
     </Container>
   );
 };

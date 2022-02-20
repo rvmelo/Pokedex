@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {SCREEN_WIDTH} from '../../../constants/dimensions';
+import {SCREEN_HEIGHT, SCREEN_WIDTH} from '../../../constants/dimensions';
 import {PokemonTypes} from '../../../types/types';
 
 interface TypeProps {
@@ -17,7 +17,7 @@ export const HeaderContainer = styled.View`
   align-items: center;
   width: 100%;
   justify-content: space-between;
-  padding-left: 10%;
+  padding-left: 8%;
   padding-right: 9.3%;
   margin-top: 16px;
 `;
@@ -46,7 +46,8 @@ export const BoardContainer = styled.View`
   border-radius: 15px;
   background: ${({theme}) => theme.colors.background};
   overflow: hidden;
-  margin-top: 18.9%;
+  margin-top: ${0.1 * SCREEN_HEIGHT}px;
+  margin-bottom: 50px;
 `;
 
 export const TypesContainer = styled.View`
@@ -115,7 +116,9 @@ export const PhraseContainer = styled.View`
   margin: 6% 8%;
 `;
 
-export const StyledPhrase = styled.Text`
+export const StyledPhrase = styled.Text.attrs({
+  numberOfLines: 2,
+})`
   font-size: ${({theme}) => theme.fonts.sizes.lg}px;
   font-family: ${({theme}) => theme.fonts.family.regular};
   color: ${({theme}) => theme.colors.text};
@@ -180,4 +183,16 @@ export const StatsBarIndicator = styled.View<BarIndicatorProps>`
   width: ${SCREEN_WIDTH * 0.6}px;
   background: ${({theme, type}) => theme.colors[type]};
   width: ${({multiplyFactor}) => multiplyFactor * (SCREEN_WIDTH * 0.6)}px;
+`;
+
+export const PokemonImageWrapper = styled.View`
+  position: absolute;
+  bottom: ${0.77 * SCREEN_HEIGHT}px;
+  left: ${0.35 * SCREEN_WIDTH}px;
+`;
+
+export const PokeballWrapper = styled.View`
+  position: absolute;
+  bottom: ${0.8 * SCREEN_HEIGHT}px;
+  left: ${0.45 * SCREEN_WIDTH}px;
 `;
