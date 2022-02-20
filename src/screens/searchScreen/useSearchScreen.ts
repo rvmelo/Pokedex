@@ -10,17 +10,19 @@ import {base_url} from '../../constants/api';
 
 interface ReturnType {
   pokeList: Pokemon[];
+  searchList: Pokemon[];
   onListEnd: () => void;
   onPokemonSearch: () => Promise<void>;
   onSearchReset: () => void;
   setSearchInput: (searchInput: string) => void;
-  isSearchCompleted: boolean;
+  isSearch: boolean;
 }
 
 export function useSearchScreen(): ReturnType {
   const [pokeList, setPokeList] = useState<Pokemon[]>([]);
+  const [searchList, setSearchList] = useState<Pokemon[]>([]);
   const [searchInput, setSearchInput] = useState('');
-  const [isSearchCompleted, setIsSearchCompleted] = useState(false);
+  const [isSearch, setIsSearch] = useState(false);
   const [offset, setOffset] = useState(0);
 
   const isMounted = useRef<boolean | null>(null);
@@ -35,6 +37,8 @@ export function useSearchScreen(): ReturnType {
 
   const onPokemonSearch = useCallback(async () => {
     try {
+      isMounted.current && setIsSearch(true);
+
       const response: AxiosResponse<{name: string}> = await api.get(
         `pokemon/${searchInput.toLowerCase()}`,
       );
@@ -49,12 +53,10 @@ export function useSearchScreen(): ReturnType {
         throw new Error();
       }
 
-      setPokeList([foundPokemon]);
-      setIsSearchCompleted(true);
+      isMounted.current && setSearchList([foundPokemon]);
     } catch {
       // failed to search pokemon
-      setPokeList([]);
-      setIsSearchCompleted(true);
+      isMounted.current && setSearchList([]);
     }
   }, [searchInput]);
 
@@ -76,10 +78,9 @@ export function useSearchScreen(): ReturnType {
   }, [onPokeListRequest]);
 
   const onSearchReset = useCallback(async () => {
-    setIsSearchCompleted(false);
-    setSearchInput('');
-    setPokeList([]);
-    setOffset(0);
+    isMounted.current && setSearchInput('');
+    isMounted.current && setSearchList([]);
+    isMounted.current && setIsSearch(false);
   }, []);
 
   const onListEnd = useCallback(() => {
@@ -92,9 +93,10 @@ export function useSearchScreen(): ReturnType {
   return {
     onListEnd,
     pokeList,
+    searchList,
     onPokemonSearch,
     onSearchReset,
     setSearchInput,
-    isSearchCompleted,
+    isSearch,
   };
 }

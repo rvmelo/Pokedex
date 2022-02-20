@@ -12,14 +12,14 @@ interface SearchInputProps {
   onPokemonSearch: () => Promise<void>;
   onSearchReset: () => void;
   setSearchInput: (searchInput: string) => void;
-  isSearchCompleted: boolean;
+  isSearch: boolean;
 }
 
 export const SearchInput: React.FC<SearchInputProps> = ({
   onPokemonSearch,
   onSearchReset,
   setSearchInput,
-  isSearchCompleted,
+  isSearch,
 }) => {
   const ref = useRef<TextInput | null>(null);
 
@@ -33,7 +33,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
       />
       <TouchableWithoutFeedback
         onPress={
-          isSearchCompleted
+          isSearch
             ? () => {
                 onSearchReset();
                 ref.current?.clear();
@@ -41,7 +41,7 @@ export const SearchInput: React.FC<SearchInputProps> = ({
             : () => onPokemonSearch()
         }>
         <SVGContainer>
-          {isSearchCompleted ? (
+          {isSearch ? (
             <CloseIcon width={19} height={19} />
           ) : (
             <MagnifyingGlass width={17} height={17} />

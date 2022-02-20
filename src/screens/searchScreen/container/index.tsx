@@ -15,11 +15,12 @@ import {Container, SearchContainer} from './styles';
 const SearchScreen: React.FC = () => {
   const {
     pokeList,
+    searchList,
     onListEnd,
     setSearchInput,
     onPokemonSearch,
     onSearchReset,
-    isSearchCompleted,
+    isSearch,
   } = useSearchScreen();
 
   return (
@@ -30,11 +31,14 @@ const SearchScreen: React.FC = () => {
           setSearchInput={setSearchInput}
           onPokemonSearch={onPokemonSearch}
           onSearchReset={onSearchReset}
-          isSearchCompleted={isSearchCompleted}
+          isSearch={isSearch}
         />
         <IconButton />
       </SearchContainer>
-      <PokeList list={pokeList} onListEnd={onListEnd} />
+      <PokeList
+        list={isSearch ? searchList : pokeList}
+        onListEnd={isSearch ? () => undefined : onListEnd}
+      />
     </Container>
   );
 };
