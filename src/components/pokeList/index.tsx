@@ -9,10 +9,15 @@ import {PokeListItem} from './pokeListItem';
 import {EmptyComponent} from './emptyComponent';
 interface PokeListProps {
   list: Pokemon[];
+  footerComponent?: React.ComponentType;
   onListEnd: () => void;
 }
 
-export const PokeList: React.FC<PokeListProps> = ({list, onListEnd}) => {
+export const PokeList: React.FC<PokeListProps> = ({
+  list,
+  onListEnd,
+  footerComponent,
+}) => {
   const renderItem: ListRenderItem<Pokemon> = useCallback(({item}) => {
     const {name, url} = item;
 
@@ -30,6 +35,7 @@ export const PokeList: React.FC<PokeListProps> = ({list, onListEnd}) => {
       style={styles.container}
       showsVerticalScrollIndicator={false}
       ListEmptyComponent={EmptyComponent}
+      ListFooterComponent={footerComponent}
     />
   );
 };

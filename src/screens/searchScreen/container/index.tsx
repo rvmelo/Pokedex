@@ -11,6 +11,7 @@ import {SearchInput} from './searchInput';
 
 //  styles
 import {Container, SearchContainer} from './styles';
+import {ListFooterComponent} from './listFooterComponent';
 
 const SearchScreen: React.FC = () => {
   const {
@@ -38,6 +39,7 @@ const SearchScreen: React.FC = () => {
       <PokeList
         list={isSearch ? searchList : pokeList}
         onListEnd={isSearch ? () => undefined : onListEnd}
+        footerComponent={!isSearch ? ListFooterComponent : undefined}
       />
     </Container>
   );

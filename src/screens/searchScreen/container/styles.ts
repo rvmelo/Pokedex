@@ -53,3 +53,10 @@ export const HeartIconContainer = styled.View`
 `;
 
 export const SVGContainer = styled.View``;
+
+export const ListFooterContainer = styled.View`
+  width: 100%;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+`;
