@@ -5,18 +5,18 @@ import {FlatList, ListRenderItem, StyleSheet} from 'react-native';
 import {Pokemon} from '../../types/types';
 import {PokeListItem} from './pokeListItem';
 
-//  components
-import {EmptyComponent} from './emptyComponent';
 interface PokeListProps {
   list: Pokemon[];
   footerComponent?: React.ComponentType;
-  onListEnd: () => void;
+  emptyComponent?: React.ComponentType;
+  onListEnd?: () => void;
 }
 
 export const PokeList: React.FC<PokeListProps> = ({
   list,
   onListEnd,
   footerComponent,
+  emptyComponent,
 }) => {
   const renderItem: ListRenderItem<Pokemon> = useCallback(({item}) => {
     const {name, url} = item;
@@ -34,7 +34,7 @@ export const PokeList: React.FC<PokeListProps> = ({
       onEndReachedThreshold={0.1}
       style={styles.container}
       showsVerticalScrollIndicator={false}
-      ListEmptyComponent={EmptyComponent}
+      ListEmptyComponent={emptyComponent}
       ListFooterComponent={footerComponent}
     />
   );

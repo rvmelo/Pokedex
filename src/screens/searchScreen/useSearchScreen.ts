@@ -45,7 +45,7 @@ export function useSearchScreen(): ReturnType {
 
       const {name} = response?.data || {};
 
-      const searchUrl = `${base_url}pokemon/${name}`;
+      const searchUrl = `${base_url}/pokemon/${name}`;
 
       const foundPokemon = {name, url: searchUrl};
 

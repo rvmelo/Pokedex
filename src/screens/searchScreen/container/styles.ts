@@ -60,3 +60,21 @@ export const ListFooterContainer = styled.View`
   align-items: center;
   justify-content: center;
 `;
+
+//  empty component
+
+export const EmptyContainer = styled.View`
+  align-items: center;
+`;
+
+export const EmptyTitleText = styled.Text`
+  font-size: 148px;
+  color: #bdbdbd;
+  font-family: ${({theme}) => theme.fonts.family.regular};
+`;
+
+export const EmptyText = styled.Text`
+  font-size: 22px;
+  color: #bdbdbd;
+  font-family: ${({theme}) => theme.fonts.family.regular};
+`;

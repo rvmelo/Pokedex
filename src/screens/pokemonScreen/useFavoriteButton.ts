@@ -1,6 +1,9 @@
 import {useCallback, useEffect, useRef, useState} from 'react';
 import {useLocalStorage} from '../../hooks/useLocalStorage';
 
+//  constants
+import {base_url} from '../../constants/api';
+
 interface FavoriteProps {
   id: number;
   name: string;
@@ -24,7 +27,7 @@ export function useFavoriteButton({id, name}: FavoriteProps): ReturnType {
   useEffect(() => {
     (async () => {
       try {
-        const isFound = await onFindFromLocalStorage({id, name});
+        const isFound = await onFindFromLocalStorage({name});
 
         setIsFavorite(!!isFound);
       } catch {
@@ -45,7 +48,7 @@ export function useFavoriteButton({id, name}: FavoriteProps): ReturnType {
 
   const onAddFavorite = useCallback(async () => {
     try {
-      await onAddToLocalStorage({id, name});
+      await onAddToLocalStorage({name, url: `${base_url}/pokemon/${id}`});
       isMounted.current && setIsFavorite(true);
     } catch {
       // failed to add to async storage
@@ -54,12 +57,12 @@ export function useFavoriteButton({id, name}: FavoriteProps): ReturnType {
 
   const onRemoveFavorite = useCallback(async () => {
     try {
-      await onRemoveFromLocalStorage({id, name});
+      await onRemoveFromLocalStorage({name});
       isMounted.current && setIsFavorite(false);
     } catch {
       // failed to remove from local storage
     }
-  }, [onRemoveFromLocalStorage, id, name]);
+  }, [onRemoveFromLocalStorage, name]);
 
   return {
     onAddFavorite,
