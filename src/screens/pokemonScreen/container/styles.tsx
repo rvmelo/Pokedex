@@ -196,3 +196,11 @@ export const PokeballWrapper = styled.View`
   bottom: ${0.8 * SCREEN_HEIGHT}px;
   left: ${0.45 * SCREEN_WIDTH}px;
 `;
+
+export const HeartIconContainer = styled.View`
+  position: absolute;
+  right: 3.15%;
+  top: 3.15%;
+`;
+
+export const FavoriteIconButton = styled.TouchableWithoutFeedback``;

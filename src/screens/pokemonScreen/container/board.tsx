@@ -3,6 +3,8 @@ import {PokemonState} from '../../../types/types';
 
 // components
 import {AttributeItem} from './attributeItem';
+import {PokemonStats} from './pokemonStats';
+import {FavoriteButton} from './FavoriteButton';
 
 //  hooks
 import {useBoard} from '../useBoard';
@@ -21,14 +23,13 @@ import {
   StyledPhrase,
   AttributesWrapper,
 } from './styles';
-import {PokemonStats} from './pokemonStats';
 
 interface BoardProps {
   pokemon: PokemonState['selectedPokemon'];
 }
 
 const Board: React.FC<BoardProps> = ({pokemon}) => {
-  const {types, weight, height, moves, stats, id} = pokemon;
+  const {types, weight, height, moves, stats, id, name} = pokemon;
 
   const {phrase} = useBoard({id});
 
@@ -45,6 +46,7 @@ const Board: React.FC<BoardProps> = ({pokemon}) => {
 
   return (
     <BoardContainer>
+      <FavoriteButton id={id} name={name} />
       <TypesContainer>
         {types.map(element => (
           <TypeContainer key={element.type.name} type={element?.type?.name}>
