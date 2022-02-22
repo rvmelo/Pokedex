@@ -45,7 +45,6 @@ export const IdText = styled.Text`
 export const BoardContainer = styled.View`
   border-radius: 15px;
   background: ${({theme}) => theme.colors.background};
-  overflow: hidden;
   margin-top: ${0.1 * SCREEN_HEIGHT}px;
   margin-bottom: 50px;
 `;
@@ -154,7 +153,6 @@ export const StatItemContainer = styled.View`
 `;
 
 export const StatsLabelWrapper = styled.View`
-  /* padding-right: 4.8%; */
   width: 15%;
   border-right-width: 1px;
   border-color: ${({theme}) => theme.colors.lightGray};
@@ -187,13 +185,13 @@ export const StatsBarIndicator = styled.View<BarIndicatorProps>`
 
 export const PokemonImageWrapper = styled.View`
   position: absolute;
-  bottom: ${0.77 * SCREEN_HEIGHT}px;
+  top: ${0.15 * SCREEN_WIDTH}px;
   left: ${0.35 * SCREEN_WIDTH}px;
 `;
 
 export const PokeballWrapper = styled.View`
   position: absolute;
-  bottom: ${0.8 * SCREEN_HEIGHT}px;
+  top: ${0.03 * SCREEN_WIDTH}px;
   left: ${0.45 * SCREEN_WIDTH}px;
 `;
 
