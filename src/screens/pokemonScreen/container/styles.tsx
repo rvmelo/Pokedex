@@ -45,6 +45,7 @@ export const IdText = styled.Text`
 export const BoardContainer = styled.View`
   border-radius: 15px;
   background: ${({theme}) => theme.colors.background};
+  /* overflow: hidden; */
   margin-top: ${0.1 * SCREEN_HEIGHT}px;
   margin-bottom: 50px;
 `;
