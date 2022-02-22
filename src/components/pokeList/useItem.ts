@@ -8,7 +8,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {AppStackParamList} from '../../routes/types';
 
 //  redux
-import {useDispatch} from 'react-redux';
+import {useAppDispatch} from '../../redux/hooks';
 import {addSelectedPokemon} from '../../redux/slices/pokemon';
 
 //  services
@@ -36,7 +36,7 @@ export function useItem({url}: HookProps): ReturnType {
 
   const isMounted = useRef<boolean | null>(null);
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const navigation = useNavigation<NavigationProps>();
 

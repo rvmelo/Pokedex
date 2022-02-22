@@ -6,7 +6,7 @@ import {SCREEN_WIDTH} from '../../../constants/dimensions';
 import {sprite_url} from '../../../constants/api';
 
 //  redux
-import {useAppSelector} from '../../../redux/slices/pokemon';
+import {useAppSelector} from '../../../redux/hooks';
 import Board from './board';
 import {Header} from './header';
 
