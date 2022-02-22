@@ -18,6 +18,10 @@ export function useLocalStorage(): ReturnType {
 
     const parsedList = data ? JSON.parse(data) : [];
 
+    if (parsedList.length >= 12) {
+      return;
+    }
+
     parsedList.push({name, url});
 
     await AsyncStorage.setItem('@pokedex:list', JSON.stringify(parsedList));
