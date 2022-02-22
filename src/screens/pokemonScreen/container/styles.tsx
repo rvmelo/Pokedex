@@ -6,6 +6,10 @@ interface TypeProps {
   type: PokemonTypes['types'];
 }
 
+export const StyledScroll = styled.ScrollView<TypeProps>`
+  background: ${({theme, type}) => theme.colors[type]};
+`;
+
 export const Container = styled.View<TypeProps>`
   flex: 1;
   background: ${({theme, type}) => theme.colors[type]};
@@ -116,9 +120,7 @@ export const PhraseContainer = styled.View`
   margin: 6% 8%;
 `;
 
-export const StyledPhrase = styled.Text.attrs({
-  numberOfLines: 2,
-})`
+export const StyledPhrase = styled.Text`
   font-size: ${({theme}) => theme.fonts.sizes.lg}px;
   font-family: ${({theme}) => theme.fonts.family.regular};
   color: ${({theme}) => theme.colors.text};
