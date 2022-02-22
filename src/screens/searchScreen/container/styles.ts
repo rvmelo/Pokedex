@@ -20,7 +20,7 @@ export const InputWrapper = styled.View`
   height: 54px;
   align-items: center;
   justify-content: space-between;
-  padding: 0 19px 0 46px;
+  padding: 0 0 0 46px;
   max-width: 303px;
   width: 100%;
 `;
@@ -32,6 +32,7 @@ export const StyledInput = styled.TextInput.attrs(({theme}) => ({
 }))`
   padding: 0;
   color: ${({theme}) => theme.colors.mediumGray};
+  flex: 1;
 `;
 
 export const InputLabel = styled.Text`
@@ -52,7 +53,13 @@ export const HeartIconContainer = styled.View`
   padding-left: 5.4%;
 `;
 
-export const SVGContainer = styled.View``;
+export const SVGContainer = styled.View`
+  height: 100%;
+  justify-content: center;
+  align-items: flex-end;
+  padding-right: 19px;
+  padding-left: 19px;
+`;
 
 export const ListFooterContainer = styled.View`
   width: 100%;
