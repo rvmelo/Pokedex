@@ -1,12 +1,12 @@
 import React from 'react';
 import {SvgXml} from 'react-native-svg';
 
-interface FinderLogoProps {
+interface SVGLogoProps {
   width: number;
   height: number;
 }
 
-export const Pokeball: React.FC<FinderLogoProps> = ({width, height}) => {
+export const Pokeball: React.FC<SVGLogoProps> = ({width, height}) => {
   const svgMarkup = `<svg width="206" height="208" viewBox="0 0 206 208" fill="none" xmlns="http://www.w3.org/2000/svg">
   <g opacity="0.1">
   <path d="M127.762 104C127.762 117.676 116.676 128.762 103 128.762C89.3244 128.762 78.2381 117.676 78.2381 104C78.2381 90.3244 89.3244 79.2381 103 79.2381C116.676 79.2381 127.762 90.3244 127.762 104Z" fill="white"/>
