@@ -6,6 +6,8 @@ import React, {
   useEffect,
 } from 'react';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import {DefaultTheme} from 'styled-components';
 
 import light from '../global/styles/themes/light';
@@ -27,9 +29,35 @@ const AppThemeProvider: React.FC = ({children}) => {
     setIsDarkTheme(prev => !prev);
   }, []);
 
-  useEffect(() => {
-    setTheme(isDarkTheme ? dark : light);
+  const onThemeRetrieval = useCallback(async () => {
+    try {
+      const storedIsDarkTheme = await AsyncStorage.getItem('@pokedex:theme');
+      const parsedIsDarkTheme = storedIsDarkTheme
+        ? JSON.parse(storedIsDarkTheme)
+        : false;
+
+      setIsDarkTheme(parsedIsDarkTheme);
+    } catch {
+      // failed to retrieve theme
+    }
+  }, []);
+
+  const onThemeSetting = useCallback(async () => {
+    try {
+      await AsyncStorage.setItem('@pokedex:theme', JSON.stringify(isDarkTheme));
+      setTheme(isDarkTheme ? dark : light);
+    } catch {
+      // failed to set theme
+    }
   }, [isDarkTheme]);
+
+  useEffect(() => {
+    onThemeRetrieval();
+  }, [onThemeRetrieval]);
+
+  useEffect(() => {
+    onThemeSetting();
+  }, [onThemeSetting]);
 
   return (
     <ThemeContext.Provider value={{theme, toggleTheme, isDarkTheme}}>
